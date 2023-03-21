@@ -1,0 +1,9 @@
+This lesson from dj4e
+https://www.dj4e.com/assn/dj4e_autos.md
+
+
+Video code walk through is here
+https://www.youtube.com/watch?v=o0XbHvKxw7Y&t=33200s
+
+github repo
+https://github.com/csev/dj4e-samples
