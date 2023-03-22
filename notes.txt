@@ -10,3 +10,8 @@ https://github.com/csev/dj4e-samples
 
 interesting third-party apps
 https://django-recurrence.readthedocs.io/en/latest/index.html
+
+
+Adding autos app for login and template learning
+https://www.youtube.com/watch?v=o0XbHvKxw7Y&t=33200s
+https://github.com/csev/dj4e-samples/tree/main/autos
