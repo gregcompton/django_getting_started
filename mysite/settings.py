@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'polls.apps.PollsConfig',
     'autos.apps.AutosConfig',
     'home.apps.HomeConfig',
+    'authz.apps.AuthzConfig',
 ]
 
 MIDDLEWARE = [

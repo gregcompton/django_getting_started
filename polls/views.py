@@ -6,6 +6,8 @@ from django.utils import timezone
 
 from .models import Question, Choice
 
+from django.contrib.auth.mixins import UserPassesTestMixin
+
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
@@ -17,7 +19,23 @@ class IndexView(generic.ListView):
         published in the future).
         """
         return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
-        return Question.objects.order_by('-pub_date')[:5]
+
+
+# # playing with Mixins
+# class IndexView(UserPassesTestMixin, generic.ListView):
+#     template_name = 'polls/index.html'
+#     context_object_name = 'latest_question_list'
+#
+#     def get_queryset(self):
+#         """
+#         Return the last five published questions (not including those set to be
+#         published in the future).
+#         """
+#         return Question.objects.filter(pub_date__lte=timezone.now()).order_by('-pub_date')[:5]
+#         return Question.objects.order_by('-pub_date')[:5]
+#
+#     def test_func(self):
+#         return self.request.user.is_staff | self.request.user.is_superuser
 
 
 class DetailView(generic.DetailView):

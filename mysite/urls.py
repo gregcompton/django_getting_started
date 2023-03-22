@@ -23,10 +23,11 @@ from django.views.static import serve
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    # path('', include('home.urls')),
-    path('', include('home.urls'), name='home'),
+    path('', include('home.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 
     path('admin/', admin.site.urls),
     path('polls/', include('polls.urls'), name='polls'),
     path('autos/', include('autos.urls'), name='autos'),
+    path('authz/', include('authz.urls')),
 ]
