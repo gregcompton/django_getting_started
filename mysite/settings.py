@@ -4,6 +4,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+APP_NAME = 'Django Getting Started'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -26,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
-    'autos.apps.AutosConfig'
+    'autos.apps.AutosConfig',
+    'home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
