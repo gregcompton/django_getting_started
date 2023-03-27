@@ -34,4 +34,12 @@ Id: {{ user.id }}
         Go to <a href="{% url 'authz:python' %}">{% url 'authz:python' %}</a>
             dump request.user data in python
     </li>
+    <li>
+        Go to <a href="{% url 'authz:permission' %}">{% url 'authz:permission' %}</a>
+            (protected by PermissionRequiredMixin. Requires: autos.add_auto)
+    </li>
+    <li>
+        Go to <a href="{% url 'authz:usertest' %}">{% url 'authz:usertest' %}</a>
+            (protected by UserPassesTestMixin. Requires: user.email.endswith('@gregcompton.com') )
+    </li>
 </ul>

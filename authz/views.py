@@ -1,10 +1,18 @@
+'''
+documentation on auth and mixins
+https://docs.djangoproject.com/en/4.1/topics/auth/default/
+https://docs.djangoproject.com/en/4.1/topics/auth/default/#django.contrib.auth.mixins.AccessMixin
+'''
+
 from django.shortcuts import render, redirect
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required, permission_required
 from django.urls import reverse
 from django.utils.http import urlencode
 
 from django.contrib.auth.models import Permission
+from django.http import HttpResponse
 
 
 class OpenView(View):
@@ -30,7 +38,19 @@ class ProtectView(LoginRequiredMixin, View):
         return render(request, 'authz/main.html')
 
 
-from django.http import HttpResponse
+class PermissionView(PermissionRequiredMixin, View):
+    permission_required = 'autos.add_auto'
+
+
+class UserTestView(UserPassesTestMixin, View):
+    def test_func(self):
+        return self.request.user.email.endswith('@gregcompton.com')
+
+    def get(self, req):
+        return render(req, 'authz/main.html')
+
+    def get(self, request):
+        return render(request, 'authz/main.html')
 
 
 class DumpPython(View):
@@ -46,6 +66,7 @@ class DumpPython(View):
             resp += "Permissons\n"
             for p in permissions:
                 resp += f'app: {p.content_type.app_label} | model: {p.content_type.model} | name: {p.name}\n'
+                resp += f'\t{p}\n----------------------------------------------------\n'
         else:
             resp += "User is not logged in\n"
 
