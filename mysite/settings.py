@@ -27,13 +27,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Extensions
+    'crispy_forms',
+    # 'crispy_bootstrap3',
+    'crispy_bootstrap4',
+
+
+    # Sample applications
     'polls.apps.PollsConfig',
     'autos.apps.AutosConfig',
     'home.apps.HomeConfig',
     'authz.apps.AuthzConfig',
     'form.apps.FormConfig',
     'myarts.apps.MyartsConfig',
+    'crispy.apps.CrispyConfig',
 ]
+
+# CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap3'
+# CRISPY_TEMPLATE_PACK = 'bootstrap3'
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

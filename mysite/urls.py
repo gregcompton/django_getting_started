@@ -32,4 +32,5 @@ urlpatterns = [
     path('authz/', include('authz.urls')),
     path('form/', include('form.urls')),
     path('myarts/', include('myarts.urls')),
+    path('crispy/', include('crispy.urls')),
 ]
