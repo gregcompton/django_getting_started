@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'authz.apps.AuthzConfig',
     'form.apps.FormConfig',
+    'myarts.apps.MyartsConfig',
 ]
 
 MIDDLEWARE = [

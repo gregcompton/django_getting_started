@@ -31,4 +31,5 @@ urlpatterns = [
     path('autos/', include('autos.urls'), name='autos'),
     path('authz/', include('authz.urls')),
     path('form/', include('form.urls')),
+    path('myarts/', include('myarts.urls')),
 ]
