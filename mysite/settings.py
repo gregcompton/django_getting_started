@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'autos.apps.AutosConfig',
     'home.apps.HomeConfig',
     'authz.apps.AuthzConfig',
+    'form.apps.FormConfig',
 ]
 
 MIDDLEWARE = [

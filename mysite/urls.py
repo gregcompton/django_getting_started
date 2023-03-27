@@ -30,4 +30,5 @@ urlpatterns = [
     path('polls/', include('polls.urls'), name='polls'),
     path('autos/', include('autos.urls'), name='autos'),
     path('authz/', include('authz.urls')),
+    path('form/', include('form.urls')),
 ]
