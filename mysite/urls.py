@@ -33,4 +33,5 @@ urlpatterns = [
     path('form/', include('form.urls')),
     path('myarts/', include('myarts.urls')),
     path('crispy/', include('crispy.urls')),
+    path('home/', include('home.urls')),
 ]

@@ -9,5 +9,10 @@
     <input type="submit" value="Submit">
     <input type="submit" value="Cancel" onclick="window.location.href='{% url 'myarts:all' %}';return false;">
   </form>
+
+    owner: {{ article.owner }}<br>
+    created: {{ article.created_at }}<br>
+    last updated: {{ article.updated_at }}
+
 </p>
 {% endblock %}

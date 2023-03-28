@@ -3,6 +3,11 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView, D
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
+"""
+This code can be re-used for any view where you want to enforce user owned rows.
+Simply use it as shown in views.py
+"""
+
 class OwnerListView(ListView):
     """
     Sub-class the ListView to pass the request to the form.
@@ -39,8 +44,8 @@ class OwnerUpdateView(LoginRequiredMixin, UpdateView):
     def get_queryset(self):
         print('update get_queryset called')
         """ Limit a User to only modifying their own data. """
-        qs = super(OwnerUpdateView, self).get_queryset()
-        return qs.filter(owner=self.request.user)
+        qs = super(OwnerUpdateView, self).get_queryset()  # use the default UpdateView get_queryset
+        return qs.filter(owner=self.request.user)  # filter the default to limit the queryset to those owned by the user
 
 
 class OwnerDeleteView(LoginRequiredMixin, DeleteView):

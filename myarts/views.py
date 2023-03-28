@@ -11,14 +11,16 @@ class ArticleListView(OwnerListView):
 class ArticleDetailView(OwnerDetailView):
     model = Article
 
+
 class ArticleCreateView(OwnerCreateView):
-    model = Article
+    model = Article # this is the database
     # List the fields to copy from the Article model to the Article form
-    fields = ['title', 'text']
+    fields = ['title', 'text'] # this is the form
+
 
 class ArticleUpdateView(OwnerUpdateView):
-    model = Article
-    fields = ['title', 'text']
+    model = Article  # this is the database
+    fields = ['title', 'text']  # this is the form
     # This would make more sense
     # fields_exclude = ['owner', 'created_at', 'updated_at']
 
