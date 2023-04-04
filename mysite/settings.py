@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'myarts.apps.MyartsConfig',
     'crispy.apps.CrispyConfig',
     'menu.apps.MenuConfig',
+    'bookmany.apps.BookmanyConfig',
+    'courses.apps.CoursesConfig',
 
 ]
 
