@@ -34,4 +34,6 @@ urlpatterns = [
     path('myarts/', include('myarts.urls')),
     path('crispy/', include('crispy.urls')),
     path('home/', include('home.urls')),
+    path('menu/', include('menu.urls')),
+
 ]

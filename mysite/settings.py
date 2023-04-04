@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'form.apps.FormConfig',
     'myarts.apps.MyartsConfig',
     'crispy.apps.CrispyConfig',
+    'menu.apps.MenuConfig',
+
 ]
 
 # CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap3'
@@ -73,6 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context_processors.settings',
             ],
         },
     },
