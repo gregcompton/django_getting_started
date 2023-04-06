@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'menu.apps.MenuConfig',
     'bookmany.apps.BookmanyConfig',
     'courses.apps.CoursesConfig',
+    'chat.apps.ChatConfig',
 
 ]
 

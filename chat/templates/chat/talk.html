@@ -1,0 +1,52 @@
+{% extends 'base_bootstrap.html' %}
+{% block content %}
+    <h1>Chat</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="message" size="60"/>
+        <input type="submit" value="Chat"/>
+        <input type="submit" name="reset" value="Reset"/>
+        <a href="{% url 'chat:main' %}" target="_blank">Cancel</a>
+        </p>
+    </form>
+
+    <div id="chatcontent">
+        <img src="{% url 'chat:static' 'spinner.gif' %}" alt="Loading..."/>
+    </div>
+
+    <script type="text/javascript">
+        function updateMsg() {
+            console.log('Requesting JSON');
+            $.getJSON('{% url 'chat:messages' %}', function (rowz) {
+                console.log('JSON', rowz);
+                $('#chatcontent').empty();
+
+                {# This is used to iterate over result1 and result2 data structures from the view#}
+                {#for (var i = 0; i < rowz.length; i++) {#}
+                {#    arow = rowz[i][0];#}
+
+                {# This uses result1 data structure from the view #}
+                {#$('#chatcontent').append('<p>' + arow[0] +#}
+                {#    '<br/>&nbsp;&nbsp;' + arow[2] + ' : ' + arow[1] + "</p>\n");#}
+
+                {# This uses result2 data structure from the view #}
+                {#    $('#chatcontent').append('<p>' + arow.text+#}
+                {#        '<br/>&nbsp;&nbsp;' + arow.owner + ' : ' + arow.created + "</p>\n");#}
+
+                {# This is used for results[message.id] data structure from view #}
+                for (arow in rowz) {
+                    $('#chatcontent').append('<p>' + rowz[arow].text +
+                        '<br/>&nbsp;&nbsp;' + rowz[arow].owner + ' : ' + rowz[arow].created + "</p>\n");
+                }
+
+                    setTimeout('updateMsg()', 4000);
+                });
+            }
+
+            // Make sure JSON requests are not cached
+            $(document).ready(function () {
+                $.ajaxSetup({cache: false});
+                setTimeout('updateMsg()', 2000);
+            });
+    </script>
+{% endblock %}

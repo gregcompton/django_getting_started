@@ -35,5 +35,6 @@ urlpatterns = [
     path('crispy/', include('crispy.urls')),
     path('home/', include('home.urls')),
     path('menu/', include('menu.urls')),
+    path('chat/', include('chat.urls')),
 
 ]
