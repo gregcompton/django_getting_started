@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.views import View
 from django.conf import settings
 
+from social_django.models import AbstractUserSocialAuth, UserSocialAuth
+
 # Create your views here.
 
 # This is a little complex because we need to detect when we are
@@ -17,5 +19,11 @@ class HomeView(View):
             'installed': settings.INSTALLED_APPS,
             'islocal': islocal
         }
+
+        if request.user.is_authenticated:
+            print(request.user.username)
+            for e in UserSocialAuth.objects.filter(user=request.user):
+                print(e.user, e.provider)
+
 
         return render(request, 'home/main.html', context)

@@ -1,11 +1,14 @@
-<html>
-<head>
-    <title>{{ settings.APP_NAME }}</title>
-    <!-- edit samples/settings.py and add APP_NAME='DJ4E Samples' or similar
-        Also make sure that home/context_processors.py exists and is included
-        settings.py context processors as 'home.context_processors.settings' -->
-</head>
-<body>
+{% extends 'menu/main_menu.html' %}
+
+{% block content %}
+{#<html>#}
+{#<head>#}
+{#    <title>{{ settings.APP_NAME }}</title>#}
+{#    <!-- edit samples/settings.py and add APP_NAME='DJ4E Samples' or similar#}
+{#        Also make sure that home/context_processors.py exists and is included#}
+{#        settings.py context processors as 'home.context_processors.settings' -->#}
+{#</head>#}
+{#<body>#}
 <h1>Welcome to the DJ4E Samples</h1>
 <p>
     Here are some samples (Each will open in a new tab):
@@ -74,24 +77,36 @@
         (<a href="https://www.django-rest-framework.org/" target="_blank">Django Rest Framework Documentation</a>)
     </li>
 </ul>
-<p>
-    {% if user.is_authenticated %}
-        <p>Authenticated as
-        <pre>
-Name: {{ user.get_full_name }}
-Email: {{ user.email }}
-Id: {{ user.id }}
-            <!-- https://stackoverflow.com/questions/26879011/check-if-current-user-is-logged-in-using-any-django-social-auth-provider -->
-Type: {% if backends.associated %} GitHub {% else %} Local {% endif %}
+
+{% if user.is_authenticated %}
+
+    <pre>Authenticated as
+    Name: {{ user.get_full_name }}
+    Email: {{ user.email }}
+    Id: {{ user.id }}
 </pre>
-        </p>
-        <p>You can <a href="{% url 'logout' %}?next={% url 'home:home' %}">Logout</a></p>
-    {% else %}
-        <p>You can <a href="{% url 'login' %}?next={{ request.path }}">Login</a> if you like.</p>
+    <!-- https://stackoverflow.com/questions/26879011/check-if-current-user-is-logged-in-using-any-django-social-auth-provider -->
+    <pre>
+Type: {% if backends.associated %} Social
+        Associated Social Logins: {% for be in backends.associated %}
+            - {{ be.provider }} {% endfor %}
+        </pre>
+        <pre>
+Not Associated:
+            {% for be in backends.not_associated %}
+                - {{ be }} {% endfor %}
+</pre>
+
+    {% else %} Local
+        <p>You are currently logged in with a username and password. You can <a
+                href="{% url 'login' %}?next={{ request.path }}">associate a Social Login</a> if you like.</p>
     {% endif %}
+    <p>You can <a href="{% url 'logout' %}?next={% url 'home:home' %}">Logout</a></p>
+{% else %}
+    <p>You can <a href="{% url 'login' %}?next={{ request.path }}">Login</a> if you like.</p>
+{% endif %}
 {% if islocal %}
     Some of the samples will require a user login to be created.
-    </p>
     <p>
         You can play with this code at
         <a href="https://samples.dj4e.com" target="_blank">https://samples.dj4e.com</a>.
@@ -115,20 +130,7 @@ Password: dj4e_nn_!
     <a href="https://github.com/csev/dj4e-samples" target="_blank">
         https://github.com/csev/dj4e-samples</a>
 </p>
-</body>
-</html>
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-dj4e-samples/main.html at main · csev/dj4e-samples
+
+{% endblock %}
+{#</body>#}
+{#</html>#}

@@ -2,34 +2,50 @@
 
 {% block content %}
 
-{% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+    {% if form.errors %}
+        <p>Your username and password didn't match. Please try again.</p>
+    {% endif %}
 
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-  {% else %}
-    <p>Please login to see this site.</p>
-  {% endif %}
-{% endif %}
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this site.</p>
+        {% endif %}
+    {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-    {{ form.as_p }}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
 
-<input type="submit" class="btn btn-primary" value="Login Locally" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
+        <input type="submit" class="btn btn-primary" value="Login Locally"/>
+        <input type="hidden" name="next" value="{{ next }}"/>
+    </form>
 
-{% if settings.SOCIAL_AUTH_GITHUB_KEY %}
-<hr/>
-<a class="btn btn-info" role="button" href="{% url 'social:begin' 'github' %}?next={{ next }}">
-    <i class="fa fa-github" aria-hidden="true"></i>
-    Login with GitHub</a>
-{% endif %}
+    {% if settings.SOCIAL_AUTH_GITHUB_KEY %}
+        <hr/>
+        <a class="btn btn-info" role="button" href="{% url 'social:begin' 'github' %}?next={{ next }}">
+            <i class="fa fa-github" aria-hidden="true"></i>
+            Login with GitHub</a>
+    {% endif %}
 
-<!-- ROOT_URLCONF {{ settings.ROOT_URLCONF }} -->
+    {% if settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY %}
+        <hr/>
+        <a class="btn btn-info" role="button" href="{% url 'social:begin' 'google-oauth2' %}?next={{ next }}">
+            <i class="fa fa-google" aria-hidden="true"></i>
+            Login with Google</a>
+    {% endif %}
+
+{#    {% if settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY %}#}
+{#        <a class="btn btn-outline-dark" href="{% url 'social:begin' 'google-oauth2' %}?next={{ next }}" role="button"#}
+{#           style="text-transform:none">#}
+{#            <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"#}
+{#                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>#}
+{#            Login with Google#}
+{#        </a>#}
+{#    {% endif %}#}
+
+    <!-- ROOT_URLCONF {{ settings.ROOT_URLCONF }} -->
 
 {% endblock %}

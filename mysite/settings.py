@@ -142,15 +142,35 @@ try:
     SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
     SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
 except:
-    print('When you want to use social login, please see dj4e-samples/github_settings-dist.py')
+    print('When you want to use github social login, please see dj4e-samples/github_settings-dist.py')
 
+try:
+    from . import google_settings
+
+    SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = google_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+    SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = google_settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
+
+except:
+    print('When you want to use google social login, please see dj4e-samples/github_settings-dist.py')
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
 # https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
+SOCIAL_AUTH_PIPELINE = (
+    'social_core.pipeline.social_auth.social_details',
+    'social_core.pipeline.social_auth.social_uid',
+    'social_core.pipeline.social_auth.social_user',
+    'social_core.pipeline.user.get_username',
+    'social_core.pipeline.social_auth.associate_by_email',
+    'social_core.pipeline.user.create_user',
+    'social_core.pipeline.social_auth.associate_user',
+    'social_core.pipeline.social_auth.load_extra_data',
+    'social_core.pipeline.user.user_details',
+)
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'

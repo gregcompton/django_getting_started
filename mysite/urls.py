@@ -23,7 +23,7 @@ from django.views.static import serve
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', include('home.urls')),
+    path('', include('home.urls'), name='sitehome'),
     path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^oauth/', include('social_django.urls', namespace='social')),
     # path('oauth/', include('social_django.urls', namespace='social')),
