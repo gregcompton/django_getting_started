@@ -20,10 +20,5 @@ class HomeView(View):
             'islocal': islocal
         }
 
-        if request.user.is_authenticated:
-            print(request.user.username)
-            for e in UserSocialAuth.objects.filter(user=request.user):
-                print(e.user, e.provider)
-
 
         return render(request, 'home/main.html', context)
