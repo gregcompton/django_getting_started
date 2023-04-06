@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'bookmany.apps.BookmanyConfig',
     'courses.apps.CoursesConfig',
     'chat.apps.ChatConfig',
+    'favs.apps.FavsConfig',
 
 ]
 

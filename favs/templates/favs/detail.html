@@ -1,0 +1,18 @@
+{% extends "menu/main_menu.html" %}
+{% load humanize %}
+{% block content %}
+    <span style="float: right;">
+        ({{ thing.updated_at|naturaltime }}
+        {% if thing.owner == user %}
+            <a href="{% url 'favs:thing_update' thing.id %}"><i class="fa fa-pencil"></i></a>
+            <a href="{% url 'favs:thing_delete' thing.id %}"><i class="fa fa-trash"></i></a>
+        {% endif %}
+    </span>
+    <h1>{{ thing.title }}</h1>
+    <p>{{ thing.text }}</p>
+    <br>
+    <p>
+        <a href="{% url 'favs:all' %}">Back to All things</a>
+    </p>
+
+{% endblock %}
